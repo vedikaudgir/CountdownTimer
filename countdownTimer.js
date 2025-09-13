@@ -47,14 +47,16 @@ function startTimer() {
 function pauseTimer() {
   clearInterval(interval);
   interval = null;
+  alarmSound.pause();
   alarmSound.currentTime = 0;
 }
 
 function resetTimer() {
   clearInterval(interval);
   interval = null;
-  totalSeconds = Number(inputBar.value) * 60 || 0;
+  alarmSound.pause();
   alarmSound.currentTime = 0;
+  totalSeconds = Number(inputBar.value) * 60 || 0;
   updateDisplay();
 }
 
