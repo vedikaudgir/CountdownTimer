@@ -3,6 +3,7 @@ const pauseButton = document.getElementById("pause-button");
 const resetButton = document.getElementById("reset-button");
 const inputBar = document.getElementById("input-bar");
 const timerDisplay = document.getElementById("timer-display");
+const alarmSound = new Audio("oggyRingtoneAlarm.mp3");
 
 let totalSeconds = 0;
 let interval = null;
@@ -38,7 +39,7 @@ function startTimer() {
     } else {
       clearInterval(interval);
       interval = null;
-      alert("Time's up!");
+      alarmSound.play();
     }
   }, 1000);
 }
@@ -46,12 +47,14 @@ function startTimer() {
 function pauseTimer() {
   clearInterval(interval);
   interval = null;
+  alarmSound.currentTime = 0;
 }
 
 function resetTimer() {
   clearInterval(interval);
   interval = null;
   totalSeconds = Number(inputBar.value) * 60 || 0;
+  alarmSound.currentTime = 0;
   updateDisplay();
 }
 
